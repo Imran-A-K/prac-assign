@@ -33,7 +33,7 @@ export default function ChargeInformation({ duration, formik, selectedCar }) {
 
       <Card className="bg-accent">
         <table className="w-full text-left text-sm">
-          <thead className="border-b">
+          <thead className="border-b-2 border-indigo-300">
             <tr>
               <th className="pb-2">Charge</th>
               <th className="pb-2 pr-2">Unit</th>

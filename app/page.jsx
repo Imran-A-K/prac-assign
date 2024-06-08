@@ -10,15 +10,10 @@ export default async function Home() {
       value: type,
     })
   );
-  const reservationId = crypto.randomUUID().slice(0, 8);
 
   return (
     <Wrapper>
-      <RentalPage
-        carListData={carListData}
-        vehicleTypes={vehicleTypes}
-        reservationId={reservationId}
-      />
+      <RentalPage carListData={carListData} vehicleTypes={vehicleTypes} />
     </Wrapper>
   );
 }

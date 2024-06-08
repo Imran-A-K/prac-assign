@@ -2,7 +2,7 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import GlobalProvider from "@/components/shared/Provider";
+import Provider from "@/components/shared/Provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
           poppins.className
         )}
       >
-        <GlobalProvider>{children}</GlobalProvider>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
