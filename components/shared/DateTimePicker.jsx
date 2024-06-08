@@ -10,6 +10,7 @@ const DateTimePicker = ({ selectedDate, onDateChange }) => {
         selected={selectedDate}
         onChange={onDateChange}
         customInput={<CustomInput />}
+        minDate={new Date()}
         placeholderText="Select Date and Time"
         showTimeSelect
         timeIntervals={60}
