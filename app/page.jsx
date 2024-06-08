@@ -1,18 +1,18 @@
 "use client";
 
 import * as Yup from "yup";
-import Container from "@/components/shared/Container";
+import Wrapper from "@/components/shared/Wrapper";
 import { Button } from "@/components/ui/button";
-import ReservationCard from "./_components/ReservationCard";
-import CustomerInformation from "./_components/CustomerInformation";
-import ChargeInformation from "./_components/ChargeInformation";
+import ReservationCard from "@/components/Cards/ReservationCard";
+import CustomerInformation from "@/components/Cards/CustomerInformation";
+import ChargeInformation from "@/components/Cards/ChargeInformation";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useFormik } from "formik";
 import { useQuery } from "@tanstack/react-query";
 import { useReactToPrint } from "react-to-print";
 
 import { formatDuration } from "@/lib/utils";
-import { PrintReceipt } from "./_components/PrintReceipt";
+import { PrintReceipt } from "@/components/Cards/PrintReceipt";
 
 const validationSchema = Yup.object().shape({
   pickupDate: Yup.date().required("Pickup date is required"),
@@ -67,7 +67,7 @@ export default function Home() {
     initialValues: initialFormValues,
     validationSchema,
     onSubmit: (values) => {
-      const payload = {
+      const receiptData = {
         invoiceId: values.reservationId,
         customerName: `${values.firstName} ${values.lastName}`,
         customerEmail: values.email,
@@ -80,7 +80,7 @@ export default function Home() {
         hasInsurance: values.hasInsurance,
         hasTax: values.hasTax,
       };
-      setSelectedReceipt(payload);
+      setSelectedReceipt(receiptData);
       handlePrintCashReceipt();
     },
   });
@@ -107,20 +107,12 @@ export default function Home() {
   });
 
   const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
+    (event) => {
+      event.preventDefault();
       formik.handleSubmit();
     },
     [formik]
   );
-
-  if (isLoading) {
-    return (
-      <div className="h-screen w-screen z-50 flex justify-center items-start pt-20">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
-      </div>
-    );
-  }
 
   const vehicleTypes = [...new Set(carListData?.map((car) => car?.type))].map(
     (type) => ({
@@ -136,6 +128,13 @@ export default function Home() {
       value: car.model,
     }));
 
+  if (isLoading) {
+    return (
+      <div className="h-screen w-screen z-50 flex justify-center items-start pt-20">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
   return (
     <main>
       <div className="hidden">
@@ -147,7 +146,7 @@ export default function Home() {
           selectedCar={selectedCar}
         />
       </div>
-      <Container>
+      <Wrapper>
         <form>
           <div className="flex items-center justify-between mb-10">
             <h3 className="font-bold text-2xl">Reservation</h3>
@@ -178,7 +177,7 @@ export default function Home() {
             </div>
           </div>
         </form>
-      </Container>
+      </Wrapper>
     </main>
   );
 }
