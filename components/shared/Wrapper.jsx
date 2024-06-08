@@ -10,5 +10,5 @@ export default function Wrapper({ children, extraClassName }) {
     extraClassName
   );
 
-  return <div className={wrapperClassCollection}>{children}</div>;
+  return <main className={wrapperClassCollection}>{children}</main>;
 }
