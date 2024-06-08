@@ -11,8 +11,8 @@ const poppins = Poppins({
   display: "swap",
 });
 export const metadata = {
-  title: "Nyntax Task",
-  description: "Powered by Next Js",
+  title: "Nyntax",
+  description: "A vehicle rental service",
 };
 
 export default function RootLayout({ children }) {
