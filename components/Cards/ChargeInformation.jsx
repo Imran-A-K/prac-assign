@@ -9,17 +9,18 @@ export default function ChargeInformation({ duration, formik, selectedCar }) {
     const weeklyCharges = selectedCar.rates.weekly * duration?.weeks;
     const dailyCharges = selectedCar.rates.daily * duration?.days;
     const hourlyCharges = selectedCar.rates.hourly * duration?.hours;
-    const baseCharges = weeklyCharges + dailyCharges + hourlyCharges;
+    const baseAmount = weeklyCharges + dailyCharges + hourlyCharges;
 
     const damageCharge = formik.values.hasDamage ? 9 : 0;
     const insuranceCharge = formik.values.hasInsurance ? 15 : 0;
     const taxCharge = formik.values.hasTax ? 20.55 : 0;
-    const discount = formik.values.discount
-      ? (baseCharges * formik.values.discount) / 100
-      : 0;
 
-    return baseCharges + damageCharge + insuranceCharge + taxCharge - discount;
+    return baseAmount + damageCharge + insuranceCharge + taxCharge;
   };
+
+  const discount = formik.values.discount
+    ? (calculateTotalCharges() * formik.values.discount) / 100
+    : 0;
 
   const totalCharges = calculateTotalCharges();
 
@@ -122,10 +123,7 @@ export default function ChargeInformation({ duration, formik, selectedCar }) {
                       <td className="py-2">{formik.values.discount}%</td>
                       <td className="py-2 text-right">
                         -$
-                        {(
-                          (totalCharges * formik.values.discount) /
-                          100
-                        ).toFixed(2)}
+                        {discount.toFixed(2)}
                       </td>
                     </tr>
                   )}
@@ -138,7 +136,9 @@ export default function ChargeInformation({ duration, formik, selectedCar }) {
                 <td className="pt-2">Total</td>
                 <td className="pt-2"></td>
                 <td className="pt-2"></td>
-                <td className="pt-2 text-right">${totalCharges.toFixed(2)}</td>
+                <td className="pt-2 text-right">
+                  ${(totalCharges - discount).toFixed(2)}
+                </td>
               </tr>
             </tfoot>
           </table>
