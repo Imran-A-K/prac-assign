@@ -90,49 +90,49 @@ export const PrintReceipt = forwardRef(function PrintPage(
           <tbody>
             {selectedCar && (
               <>
-                {duration.weeks > 0 && (
+                {duration?.weeks > 0 && (
                   <tr>
                     <td className="py-2">Weekly</td>
-                    <td className="py-2">{duration.weeks}</td>
+                    <td className="py-2">{duration?.weeks}</td>
                     <td className="py-2">
                       ${parseFloat(selectedCar.rates.weekly).toFixed(2)}
                     </td>
                     <td className="py-2 text-right">
                       $
                       {parseFloat(
-                        selectedCar.rates.weekly * duration.weeks
+                        selectedCar.rates.weekly * duration?.weeks
                       ).toFixed(2)}
                     </td>
                   </tr>
                 )}
 
-                {duration.days > 0 && (
+                {duration?.days > 0 && (
                   <tr>
                     <td className="py-2">Daily</td>
-                    <td className="py-2">{duration.days}</td>
+                    <td className="py-2">{duration?.days}</td>
                     <td className="py-2">
                       ${parseFloat(selectedCar.rates.daily).toFixed(2)}
                     </td>
                     <td className="py-2 text-right">
                       $
                       {parseFloat(
-                        selectedCar.rates.daily * duration.days
+                        selectedCar.rates.daily * duration?.days
                       ).toFixed(2)}
                     </td>
                   </tr>
                 )}
 
-                {duration.hours > 0 && (
+                {duration?.hours > 0 && (
                   <tr>
                     <td className="py-2">Hourly</td>
-                    <td className="py-2">{duration.hours}</td>
+                    <td className="py-2">{duration?.hours}</td>
                     <td className="py-2">
                       ${parseFloat(selectedCar.rates.hourly).toFixed(2)}
                     </td>
                     <td className="py-2 text-right">
                       $
                       {parseFloat(
-                        selectedCar.rates.hourly * duration.hours
+                        selectedCar.rates.hourly * duration?.hours
                       ).toFixed(2)}
                     </td>
                   </tr>

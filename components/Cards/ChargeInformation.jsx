@@ -6,9 +6,9 @@ export default function ChargeInformation({ duration, formik, selectedCar }) {
   const calculateTotalCharges = () => {
     if (!selectedCar) return 0;
 
-    const weeklyCharges = selectedCar.rates.weekly * duration.weeks;
-    const dailyCharges = selectedCar.rates.daily * duration.days;
-    const hourlyCharges = selectedCar.rates.hourly * duration.hours;
+    const weeklyCharges = selectedCar.rates.weekly * duration?.weeks;
+    const dailyCharges = selectedCar.rates.daily * duration?.days;
+    const hourlyCharges = selectedCar.rates.hourly * duration?.hours;
     const baseCharges = weeklyCharges + dailyCharges + hourlyCharges;
 
     const damageCharge = formik.values.hasDamage ? 9 : 0;
@@ -46,43 +46,47 @@ export default function ChargeInformation({ duration, formik, selectedCar }) {
             <tbody>
               {selectedCar && (
                 <>
-                  {duration.weeks > 0 && (
+                  {duration?.weeks > 0 && (
                     <tr>
                       <td className="py-2">Weekly</td>
-                      <td className="py-2">{duration.weeks}</td>
+                      <td className="py-2">{duration?.weeks}</td>
                       <td className="py-2">
                         ${selectedCar.rates.weekly.toFixed(2)}
                       </td>
                       <td className="py-2 text-right">
                         $
-                        {(selectedCar.rates.weekly * duration.weeks).toFixed(2)}
+                        {(selectedCar.rates.weekly * duration?.weeks).toFixed(
+                          2
+                        )}
                       </td>
                     </tr>
                   )}
 
-                  {duration.days > 0 && (
+                  {duration?.days > 0 && (
                     <tr>
                       <td className="py-2">Daily</td>
-                      <td className="py-2">{duration.days}</td>
+                      <td className="py-2">{duration?.days}</td>
                       <td className="py-2">
                         ${selectedCar.rates.daily.toFixed(2)}
                       </td>
                       <td className="py-2 text-right">
-                        ${(selectedCar.rates.daily * duration.days).toFixed(2)}
+                        ${(selectedCar.rates.daily * duration?.days).toFixed(2)}
                       </td>
                     </tr>
                   )}
 
-                  {duration.hours > 0 && (
+                  {duration?.hours > 0 && (
                     <tr>
                       <td className="py-2">Hourly</td>
-                      <td className="py-2">{duration.hours}</td>
+                      <td className="py-2">{duration?.hours}</td>
                       <td className="py-2">
                         ${selectedCar.rates.hourly.toFixed(2)}
                       </td>
                       <td className="py-2 text-right">
                         $
-                        {(selectedCar.rates.hourly * duration.hours).toFixed(2)}
+                        {(selectedCar.rates.hourly * duration?.hours).toFixed(
+                          2
+                        )}
                       </td>
                     </tr>
                   )}
