@@ -77,7 +77,13 @@ export default function ReservationDetails({ formik }) {
               setFieldValue("pickupDate", date);
               const minReturnDate = new Date(date.getTime() + 60 * 60 * 1000);
               setMinReturnDate(minReturnDate);
-              if (values.returnDate) {
+              if (values.returnDate && values.returnDate <= date) {
+                setFieldValue("returnDate", minReturnDate);
+                setFieldValue(
+                  "duration",
+                  formatDuration(date, minReturnDate)?.formatted
+                );
+              } else if (values.returnDate) {
                 setFieldValue(
                   "duration",
                   formatDuration(date, values.returnDate)?.formatted
