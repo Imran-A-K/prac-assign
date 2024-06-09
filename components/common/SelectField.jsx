@@ -52,11 +52,12 @@ export default function SelectField({
             },
           }),
           option: (baseStyles, { isFocused }) => ({
-            backgroundColor: isFocused ? "#020817" : "#fff",
+            backgroundColor: isFocused ? "#5D5CFF" : "#fff",
             padding: "8px",
             color: isFocused ? "#fff" : "#020817",
             cursor: "default",
           }),
+
           menu: (provided) => ({
             ...provided,
             backgroundColor: "white",
