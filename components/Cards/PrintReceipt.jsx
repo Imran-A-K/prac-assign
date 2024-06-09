@@ -11,9 +11,9 @@ export const PrintReceipt = forwardRef(function PrintPage(
 
   const insuranceCharge = formik.values.hasInsurance ? 15 : 0;
   const totalCharges = selectedCar
-    ? selectedCar.rates.weekly * duration.weeks +
-      selectedCar.rates.daily * duration.days +
-      selectedCar.rates.hourly * duration.hours +
+    ? selectedCar.rates.weekly * duration?.weeks +
+      selectedCar.rates.daily * duration?.days +
+      selectedCar.rates.hourly * duration?.hours +
       taxCharge +
       damageCharge +
       insuranceCharge
