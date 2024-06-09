@@ -6,7 +6,6 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { formatDuration } from "@/lib/utils";
-import VehicleInfo from "./VehicleInfo";
 
 const FormField = ({
   label,
@@ -50,13 +49,7 @@ const DateField = ({ label, name, formik, onDateChange }) => (
   </div>
 );
 
-export default function ReservationCard({
-  formik,
-  vehicleTypeOptions,
-  vehicleOptions,
-  data,
-  setSelectedCar,
-}) {
+export default function ReservationDetails({ formik }) {
   const { values, setFieldValue } = formik;
 
   return (
@@ -112,14 +105,6 @@ export default function ReservationCard({
           <FormField label="Discount (%)" name="discount" formik={formik} />
         </Card>
       </div>
-
-      <VehicleInfo
-        formik={formik}
-        vehicleTypeOptions={vehicleTypeOptions}
-        vehicleOptions={vehicleOptions}
-        data={data}
-        setSelectedCar={setSelectedCar}
-      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 import { PrintReceipt } from "@/components/Cards/PrintReceipt";
 import { Button } from "@/components/ui/button";
-import ReservationCard from "@/components/Cards/ReservationCard";
+import ReservationDetails from "@/components/Cards/ReservationDetails";
 import CustomerInformation from "@/components/Cards/CustomerInformation";
 import ChargeInformation from "@/components/Cards/ChargeInformation";
 import { formatDuration } from "@/lib/utils";
@@ -11,6 +11,8 @@ import { initialFormValues } from "@/lib/utils";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useFormik } from "formik";
 import { useReactToPrint } from "react-to-print";
+import VehicleInfo from "../Cards/VehicleInfo";
+import AdditionalCharges from "../Cards/AdditionalCharges";
 function RentalPage({ carListData, vehicleTypes }) {
   const [selectedCar, setSelectedCar] = useState(null);
   const [duration, setDuration] = useState(null);
@@ -85,18 +87,19 @@ function RentalPage({ carListData, vehicleTypes }) {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className=" ">
-            <ReservationCard
+          <div className=" md:col-span-2 grid gap-6 sm:grid-cols-2">
+            <ReservationDetails formik={formik} />
+            <CustomerInformation formik={formik} />
+            <VehicleInfo
               formik={formik}
               vehicleTypeOptions={vehicleTypes}
               vehicleOptions={vehicleOptions}
               data={carListData}
               setSelectedCar={setSelectedCar}
             />
+            <AdditionalCharges formik={formik} />
           </div>
-          <div className="">
-            <CustomerInformation formik={formik} />
-          </div>
+
           <div className="md:col-span-2 lg:col-span-1">
             <ChargeInformation
               duration={duration}
