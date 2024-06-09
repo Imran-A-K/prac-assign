@@ -22,7 +22,7 @@ Car Rental Web is a web application designed to manage car rental reservations. 
 To get started with the Car Rental Web application, clone the repository and install the necessary dependencies.
 
 ```bash
-git clone https://github.com/your-username/car-rental-web.git
+git clone https://github.com/Imran-A-K/prac-assign.git
 cd car-rental-web
 npm install
 ```
