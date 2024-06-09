@@ -6,16 +6,23 @@ export const PrintReceipt = forwardRef(function PrintPage(
   { selectedReceipt, duration, formik, selectedCar },
   ref
 ) {
+  const taxCharge = formik.values.hasTax ? 20.55 : 0;
+  const damageCharge = formik.values.hasDamage ? 9 : 0;
+
+  const insuranceCharge = formik.values.hasInsurance ? 15 : 0;
   const totalCharges = selectedCar
     ? selectedCar.rates.weekly * duration.weeks +
       selectedCar.rates.daily * duration.days +
-      selectedCar.rates.hourly * duration.hours
+      selectedCar.rates.hourly * duration.hours +
+      taxCharge +
+      damageCharge +
+      insuranceCharge
     : 0;
 
-  const start = new Date(
+  const pickupDate = new Date(
     selectedReceipt?.pickupDate || formik.values.pickupDate
   );
-  const end = new Date(
+  const dropOffDate = new Date(
     selectedReceipt?.dropoffDate || formik.values.returnDate
   );
 
@@ -31,7 +38,7 @@ export const PrintReceipt = forwardRef(function PrintPage(
 
           <Link
             href="mailto:nyntax-receipt@gmail.com"
-            className="text-blue-600"
+            className="text-indigo-600"
           >
             {selectedReceipt?.customerEmail || formik.values.email}
           </Link>
@@ -58,12 +65,12 @@ export const PrintReceipt = forwardRef(function PrintPage(
           <p>
             <span className="font-semibold">Pickup-date:</span>{" "}
             {(selectedReceipt?.pickupDate || formik.values.pickupDate) &&
-              format(start, "Pp")}
+              format(pickupDate, "Pp")}
           </p>
           <p>
             <span className="font-semibold">Return-date:</span>{" "}
             {(selectedReceipt?.dropoffDate || formik.values.returnDate) &&
-              format(end, "Pp")}
+              format(dropOffDate, "Pp")}
           </p>
         </div>
       </div>
@@ -151,8 +158,8 @@ export const PrintReceipt = forwardRef(function PrintPage(
                   <tr>
                     <td className="py-2">Tax</td>
                     <td className="py-2"></td>
-                    <td className="py-2">$11.50</td>
-                    <td className="py-2 text-right">$11.50</td>
+                    <td className="py-2">$20.55</td>
+                    <td className="py-2 text-right">$20.55</td>
                   </tr>
                 )}
                 {formik.values.discount && (
@@ -179,10 +186,7 @@ export const PrintReceipt = forwardRef(function PrintPage(
               <td className="pt-2 text-right">
                 $
                 {parseFloat(
-                  totalCharges +
-                    (formik.values.hasDamage ? 9 : 0) +
-                    (formik.values.hasInsurance ? 15 : 0) +
-                    (formik.values.hasTax ? 11.5 : 0) -
+                  totalCharges -
                     (formik.values.discount
                       ? (totalCharges * formik.values.discount) / 100
                       : 0)

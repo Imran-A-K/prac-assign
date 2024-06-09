@@ -13,7 +13,7 @@ export default function ChargeInformation({ duration, formik, selectedCar }) {
 
     const damageCharge = formik.values.hasDamage ? 9 : 0;
     const insuranceCharge = formik.values.hasInsurance ? 15 : 0;
-    const taxCharge = formik.values.hasTax ? 11.5 : 0;
+    const taxCharge = formik.values.hasTax ? 20.55 : 0;
     const discount = formik.values.discount
       ? (baseCharges * formik.values.discount) / 100
       : 0;
@@ -104,7 +104,7 @@ export default function ChargeInformation({ duration, formik, selectedCar }) {
                   <tr>
                     <td className="py-2">Tax</td>
                     <td className="py-2"></td>
-                    <td className="py-2">$11.50</td>
+                    <td className="py-2">$20.55</td>
                     <td className="py-2 text-right">$20.55</td>
                   </tr>
                 )}
