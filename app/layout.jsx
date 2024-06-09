@@ -2,7 +2,7 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import Provider from "@/components/shared/Provider";
+import Provider from "@/components/common/Provider";
 
 const poppins = Poppins({
   subsets: ["latin"],

@@ -1,8 +1,8 @@
 import React from "react";
-import SelectField from "@/components/shared/SelectField";
+import SelectField from "@/components/common/SelectField";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import FormikErrorBox from "@/components/shared/FormikErrorBox";
+import FormikErrorBox from "@/components/common/FormikErrorBox";
 function VehicleInfo({
   formik,
   vehicleTypeOptions,

@@ -1,6 +1,6 @@
 import { getCarList } from "@/api/carListData";
 import RentalPage from "@/components/Home/RentalPage";
-import Wrapper from "@/components/shared/Wrapper";
+import Wrapper from "@/components/common/Wrapper";
 
 export default async function Home() {
   const carListData = await getCarList();

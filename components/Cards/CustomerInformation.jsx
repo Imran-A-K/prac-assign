@@ -1,6 +1,6 @@
 "use client";
 
-import FormikErrorBox from "@/components/shared/FormikErrorBox";
+import FormikErrorBox from "@/components/common/FormikErrorBox";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
