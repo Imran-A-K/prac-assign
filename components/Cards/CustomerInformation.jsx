@@ -2,9 +2,9 @@
 
 import ErrorIdentifier from "@/components/common/ErrorIdentifier";
 import { Card } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import AdditionalCharges from "./AdditionalCharges";
 
 const FormField = ({ label, name, formik, type = "text" }) => (
   <div>
@@ -23,23 +23,6 @@ const FormField = ({ label, name, formik, type = "text" }) => (
   </div>
 );
 
-const CheckboxField = ({ label, name, formik, price }) => (
-  <div className="flex items-center space-x-2">
-    <Checkbox
-      id={name}
-      checked={formik.values[name]}
-      onCheckedChange={() => formik.setFieldValue(name, !formik.values[name])}
-    />
-    <Label
-      htmlFor={name}
-      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex justify-between w-full cursor-pointer"
-    >
-      {label}
-      <p>{price}</p>
-    </Label>
-  </div>
-);
-
 export default function CustomerInformation({ formik }) {
   return (
     <div className="space-y-6">
@@ -55,33 +38,7 @@ export default function CustomerInformation({ formik }) {
           <FormField label="Phone" name="phone" formik={formik} type="tel" />
         </Card>
       </div>
-
-      <div>
-        <div className="border-b-2 border-indigo-600 pb-1 text-lg font-semibold mb-5">
-          Additional Charges
-        </div>
-
-        <Card className="space-y-8">
-          <CheckboxField
-            label="Collision Damage Waiver"
-            name="hasDamage"
-            formik={formik}
-            price="$9.00"
-          />
-          <CheckboxField
-            label="Liability Insurance"
-            name="hasInsurance"
-            formik={formik}
-            price="$15.00"
-          />
-          <CheckboxField
-            label="Rental Tax"
-            name="hasTax"
-            formik={formik}
-            price="$11.50"
-          />
-        </Card>
-      </div>
+      <AdditionalCharges formik={formik} />
     </div>
   );
 }
