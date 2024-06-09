@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { formatDuration } from "@/lib/utils";
+import { useState } from "react";
 
 const FormField = ({
   label,
@@ -35,7 +36,7 @@ const FormField = ({
   </div>
 );
 
-const DateField = ({ label, name, formik, onDateChange }) => (
+const DateField = ({ label, name, formik, onDateChange, minDate }) => (
   <div>
     <Label className="block">
       {label}
@@ -44,6 +45,7 @@ const DateField = ({ label, name, formik, onDateChange }) => (
     <DateTimePicker
       selectedDate={formik.values[name]}
       onDateChange={onDateChange}
+      minDate={minDate}
     />
     <ErrorIdentifier formik={formik} field={name} />
   </div>
@@ -51,7 +53,7 @@ const DateField = ({ label, name, formik, onDateChange }) => (
 
 export default function ReservationDetails({ formik }) {
   const { values, setFieldValue } = formik;
-
+  const [minReturnDate, setMinReturnDate] = useState(new Date());
   return (
     <div className="space-y-6">
       <div>
@@ -73,6 +75,8 @@ export default function ReservationDetails({ formik }) {
             formik={formik}
             onDateChange={(date) => {
               setFieldValue("pickupDate", date);
+              const minReturnDate = new Date(date.getTime() + 60 * 60 * 1000);
+              setMinReturnDate(minReturnDate);
               if (values.returnDate) {
                 setFieldValue(
                   "duration",
@@ -86,6 +90,7 @@ export default function ReservationDetails({ formik }) {
             label="Return Date"
             name="returnDate"
             formik={formik}
+            minDate={minReturnDate}
             onDateChange={(date) => {
               setFieldValue("returnDate", date);
               if (values.pickupDate) {

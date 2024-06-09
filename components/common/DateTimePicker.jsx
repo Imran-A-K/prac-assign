@@ -3,14 +3,18 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CustomInput from "./CustomInput";
 
-const DateTimePicker = ({ selectedDate, onDateChange }) => {
+const DateTimePicker = ({
+  selectedDate,
+  onDateChange,
+  minDate = new Date(),
+}) => {
   return (
     <div className="w-full">
       <DatePicker
         selected={selectedDate}
         onChange={onDateChange}
         customInput={<CustomInput />}
-        minDate={new Date()}
+        minDate={minDate}
         placeholderText="Select Date and Time"
         showTimeSelect
         timeIntervals={60}
