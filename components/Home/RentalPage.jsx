@@ -84,8 +84,8 @@ function RentalPage({ carListData, vehicleTypes }) {
           </Button>
         </div>
 
-        <div className="grid grid-cols-10 gap-6">
-          <div className="col-span-10 md:col-span-5 lg:col-span-3">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className=" ">
             <ReservationCard
               formik={formik}
               vehicleTypeOptions={vehicleTypes}
@@ -94,10 +94,10 @@ function RentalPage({ carListData, vehicleTypes }) {
               setSelectedCar={setSelectedCar}
             />
           </div>
-          <div className="col-span-10 md:col-span-5 lg:col-span-3">
+          <div className="">
             <CustomerInformation formik={formik} />
           </div>
-          <div className="col-span-10 lg:col-span-4">
+          <div className="md:col-span-2 lg:col-span-1">
             <ChargeInformation
               duration={duration}
               formik={formik}
