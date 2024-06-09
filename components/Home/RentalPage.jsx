@@ -19,7 +19,7 @@ function RentalPage({ carListData, vehicleTypes }) {
 
   const handlePrintCashReceipt = useReactToPrint({
     content: () => cashReceiptRef.current,
-    documentTitle: `cash_receipt`,
+    documentTitle: `payment_invoice`,
   });
 
   const formik = useFormik({
