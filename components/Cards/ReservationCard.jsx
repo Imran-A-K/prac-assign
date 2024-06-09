@@ -1,7 +1,7 @@
 "use client";
 
 import DateTimePicker from "@/components/common/DateTimePicker";
-import FormikErrorBox from "@/components/common/FormikErrorBox";
+import ErrorIdentifier from "@/components/common/ErrorIdentifier";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -31,7 +31,7 @@ const FormField = ({
       disabled={disabled}
     />
     {name !== "duration" && name !== "reservationId" && name !== "discount" && (
-      <FormikErrorBox formik={formik} field={name} />
+      <ErrorIdentifier formik={formik} field={name} />
     )}
   </div>
 );
@@ -46,7 +46,7 @@ const DateField = ({ label, name, formik, onDateChange }) => (
       selectedDate={formik.values[name]}
       onDateChange={onDateChange}
     />
-    <FormikErrorBox formik={formik} field={name} />
+    <ErrorIdentifier formik={formik} field={name} />
   </div>
 );
 

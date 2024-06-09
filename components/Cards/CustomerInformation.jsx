@@ -1,6 +1,6 @@
 "use client";
 
-import FormikErrorBox from "@/components/common/FormikErrorBox";
+import ErrorIdentifier from "@/components/common/ErrorIdentifier";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -19,7 +19,7 @@ const FormField = ({ label, name, formik, type = "text" }) => (
       onBlur={formik.handleBlur}
       name={name}
     />
-    <FormikErrorBox formik={formik} field={name} />
+    <ErrorIdentifier formik={formik} field={name} />
   </div>
 );
 

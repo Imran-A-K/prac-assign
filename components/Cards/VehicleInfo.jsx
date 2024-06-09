@@ -2,7 +2,7 @@ import React from "react";
 import SelectField from "@/components/common/SelectField";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import FormikErrorBox from "@/components/common/FormikErrorBox";
+import ErrorIdentifier from "@/components/common/ErrorIdentifier";
 function VehicleInfo({
   formik,
   vehicleTypeOptions,
@@ -31,7 +31,7 @@ function VehicleInfo({
             value={formik.values.vehicleType}
             placeholder="Select Vehicle Type"
           />
-          <FormikErrorBox formik={formik} field="vehicleType" />
+          <ErrorIdentifier formik={formik} field="vehicleType" />
         </div>
 
         <div>
@@ -48,7 +48,7 @@ function VehicleInfo({
             value={formik.values.vehicle}
             placeholder="Select Vehicle"
           />
-          <FormikErrorBox formik={formik} field="vehicle" />
+          <ErrorIdentifier formik={formik} field="vehicle" />
         </div>
       </Card>
     </div>
