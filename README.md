@@ -23,7 +23,7 @@ To get started with the Car Rental Web application, clone the repository and ins
 
 ```bash
 git clone https://github.com/Imran-A-K/prac-assign.git
-cd car-rental-web
+cd prac-assign
 npm install
 ```
 
